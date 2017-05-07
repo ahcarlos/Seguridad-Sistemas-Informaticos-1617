@@ -95,11 +95,9 @@ def require_data
     loop do
         puts "Introduce el valor de d, tal que sea comprimo con Φ(n)= #{phi}"
         d = gets.to_i
-        break if s <= 0 || s >= n || gcd_euclides(s, n) == 1
+        break if gcd_euclides(d, phi) == 1
     end
     
-    puts "Introduce el número de iteraciones"
-    iter = gets.to_i
     
     fs_object = FiatShamir.new(prime_p, prime_q, s, iter)
     # return fs_object

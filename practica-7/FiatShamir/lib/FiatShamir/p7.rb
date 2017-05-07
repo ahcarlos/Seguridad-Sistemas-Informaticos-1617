@@ -101,7 +101,7 @@ def require_data
     loop do
         puts "Introduce el valor de s (0 < s < N), tal que s y N=#{n} son coprimos"
         s = gets.to_i
-        break if s <= 0 || s >= n || gcd_euclides(s, n) != 1
+        break if s <= 0 || s >= n || gcd_euclides(s, n) == 1
     end
     
     puts "Introduce el número de iteraciones"
