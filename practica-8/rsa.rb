@@ -259,7 +259,7 @@ class RSA
   end
 end
 
-puts '------ Ejemplo 1 ------'
+puts '------ Ejemplo 1 ------'.colorize(:color => :cyan)
 msg_test = 'MANDA DINEROS'
 prueba = RSA.new(421, 7, 1619, msg_test)
 prueba.to_s
@@ -267,7 +267,7 @@ prueba.numeric_cypher
 prueba.encrypt
 prueba.decrypt
 puts
-puts '------ Ejemplo 2 ------'
+puts '------ Ejemplo 2 ------'.colorize(:color => :cyan)
 msg_test2 = 'AMIGO MIO'
 prueba2 = RSA.new(2347, 347, 5, msg_test2)
 prueba2.to_s
