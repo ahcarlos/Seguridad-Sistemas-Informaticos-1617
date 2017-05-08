@@ -1,8 +1,8 @@
 class Integer
-    # Se modifica la clase entero para añadir la exponenciación rápida
-    # @param b [Integer] base
-    # @param m [Integer] módulo a aplicar
-    # @return [Integer] resultado de la exponenciación rápida
+  # Se modifica la clase entero para añadir la exponenciación rápida
+  # @param b [Integer] base
+  # @param m [Integer] módulo a aplicar
+  # @return [Integer] resultado de la exponenciación rápida
   def fast_expo(b, m)
     # b -> exponente
     # m -> modulo
@@ -95,34 +95,34 @@ end
 
 # @author Carlos de Armas Hernández
 class RSA
-    # Clase que implementa el cifrado y descifrado RSA
-    # @!attribute p
-    #   @return [Integer] Número primo p
-    # @!attribute q
-    #   @return [Integer] Número primo q
-    # @!attribute d
-    #   @return [Integer] Entero primo con phi
-    # @!attribute phi
-    #   @return [Integer] (p - 1) * (q - 1)
-    # @!attribute e
-    #   @return [Integer] Inverso de d módulo phi(n)
-    # @!attribute n
-    #   @return [Integer] (p * q)
-    # @!attribute message
-    #   @return [String] El mensaje sin espacios en blanco
-    # @!attribute numeric_encrypt
-    #   @return [Array] Cifrado numérico
-    # @!attribute final_encrypt
-    #   @return [Array] Cifrado final, c_i = m_i**e mod n
-    # @!attribute block_size
-    #   @return [Integer] Tamaño del bloque
-    # @!attribute decrypted
-    #   @return [Array] Vector con el texto descifrado
-    # @!attribute arr
-    #   @return [Array] Vector donde se almacenan los índices de las letras del mensaje
-    
+  # Clase que implementa el cifrado y descifrado RSA
+  # @!attribute p
+  #   @return [Integer] Número primo p
+  # @!attribute q
+  #   @return [Integer] Número primo q
+  # @!attribute d
+  #   @return [Integer] Entero primo con phi
+  # @!attribute phi
+  #   @return [Integer] (p - 1) * (q - 1)
+  # @!attribute e
+  #   @return [Integer] Inverso de d módulo phi(n)
+  # @!attribute n
+  #   @return [Integer] (p * q)
+  # @!attribute message
+  #   @return [String] El mensaje sin espacios en blanco
+  # @!attribute numeric_encrypt
+  #   @return [Array] Cifrado numérico
+  # @!attribute final_encrypt
+  #   @return [Array] Cifrado final, c_i = m_i**e mod n
+  # @!attribute block_size
+  #   @return [Integer] Tamaño del bloque
+  # @!attribute decrypted
+  #   @return [Array] Vector con el texto descifrado
+  # @!attribute arr
+  #   @return [Array] Vector donde se almacenan los índices de las letras del mensaje
+
   attr_accessor :p, :q, :d, :phi, :n, :e, :message, :numeric_encrypt, :final_encrypt, :decrypted, :block_size
-  
+
   def initialize(prime_p, q, d, msg)
     @p = prime_p # inf privada
     @q = q # inf privada
@@ -163,7 +163,7 @@ class RSA
   end
 
   # Establece el tamaño del bloque
-  # @return [Integer] el tamaño del bloque que se va a usar  
+  # @return [Integer] el tamaño del bloque que se va a usar
   def set_block_size
     base = @LETTER_TO_INDEX.length
     j = 0
@@ -191,7 +191,7 @@ class RSA
     t += n if t < 0
     t
   end
-  
+
   # Realiza la codificación numérica
   # @note modifica el atributo numeric_encrypt
   def numeric_cypher
@@ -244,7 +244,7 @@ class RSA
     end
     puts b.to_s
   end
-    
+
   # Realiza el descifrado
   # @note modifica el atributo decrypted
   def decrypt
