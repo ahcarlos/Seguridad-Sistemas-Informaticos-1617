@@ -257,10 +257,19 @@ class RSA
   end
 end
 
+puts '------ Ejemplo 1 ------'
 msg_test = 'MANDA DINEROS'
 prueba = RSA.new(421, 7, 1619, msg_test)
 prueba.to_s
 prueba.numeric_cypher
 prueba.encrypt
 prueba.decrypt
-# prueba.decto26(10)
+puts
+puts '------ Ejemplo 2 ------'
+msg_test2 = 'AMIGO MIO'
+prueba2 = RSA.new(2347, 347, 5, msg_test2)
+prueba2.to_s
+prueba2.numeric_cypher
+prueba2.encrypt
+prueba2.decrypt
+puts
