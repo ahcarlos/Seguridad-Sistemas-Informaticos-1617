@@ -1,4 +1,8 @@
 class Integer
+    # Se modifica la clase entero para añadir la exponenciación rápida
+    # @param b [Integer] base
+    # @param m [Integer] módulo a aplicar
+    # @return [Integer] resultado de la exponenciación rápida
   def fast_expo(b, m)
     # b -> exponente
     # m -> modulo
@@ -17,6 +21,10 @@ class Integer
   end
 end
 
+# Algoritmo de euclides para comprobar que dos números son coprimos
+# @param a [Integer] primer número
+# @param b [Integer] segundo número
+# @return [Integer] si devuelve 1 son coprimos, en otro caso, no son coprimos
 def gcd_euclides(a, b)
   while b != 0
     t = b
@@ -26,35 +34,17 @@ def gcd_euclides(a, b)
   a
 end
 
-# para calcular "e", que es el inverso de d modulo Φ(n)
-# https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Computing_multiplicative_inverses_in_modular_structures
-# recibe d y phi como parámetro, devuelve el valor de e
-def modular_inverse(a, n)
-  t = 0
-  r = n
-  newt = 1
-  newr = a
-
-  while newr != 0
-    quotient = r / newr
-    t, newt = newt, t - quotient * newt
-    r, newr = newr, r - quotient * newr
-  end
-  return false if r > 1
-  t += n if t < 0
-  t
-end
-
-# Lehman primality test
-# Output: prime:0, composite:1
-# l: veces a iterar, n: numero a probar
-# source: http://studentnet.cs.manchester.ac.uk/resources/library/3rd-year-projects/2016/tong.ding.pdf
-# steps:
+# Test de primalidad de Lehmann
+# Pasos:
 # 1. Pick a random integer a, 1 <= a < n.
 # 2. Let c be a**(n−1)/2 mod n.
 # 3. If c is neither 1 nor n−1, then return n as composite, otherwise store c into an array.
 # 4. Loop for l times, keep trying different random values of a.
 # 5. If any element in array is not equal to 1, return n as composite. Otherwise, n is prime.
+# @note fuente: http://studentnet.cs.manchester.ac.uk/resources/library/3rd-year-projects/2016/tong.ding.pdf
+# @param n [Integer] el número que queremos probar si es primo o compuesto
+# @param l [Integer] el número de veces que se hace la comprobación, ya que es probabilístico
+# @return [Integer] 0 si es número primo, 1 si es número compuesto
 def lehmann_test(n, l)
   b = []
   for it in 1..l
@@ -103,8 +93,36 @@ def require_data
   # return fs_object
 end
 
+# @author Carlos de Armas Hernández
 class RSA
+    # Clase que implementa el cifrado y descifrado RSA
+    # @!attribute p
+    #   @return [Integer] Número primo p
+    # @!attribute q
+    #   @return [Integer] Número primo q
+    # @!attribute d
+    #   @return [Integer] Entero primo con phi
+    # @!attribute phi
+    #   @return [Integer] (p - 1) * (q - 1)
+    # @!attribute e
+    #   @return [Integer] Inverso de d módulo phi(n)
+    # @!attribute n
+    #   @return [Integer] (p * q)
+    # @!attribute message
+    #   @return [String] El mensaje sin espacios en blanco
+    # @!attribute numeric_encrypt
+    #   @return [Array] Cifrado numérico
+    # @!attribute final_encrypt
+    #   @return [Array] Cifrado final, c_i = m_i**e mod n
+    # @!attribute block_size
+    #   @return [Integer] Tamaño del bloque
+    # @!attribute decrypted
+    #   @return [Array] Vector con el texto descifrado
+    # @!attribute arr
+    #   @return [Array] Vector donde se almacenan los índices de las letras del mensaje
+    
   attr_accessor :p, :q, :d, :phi, :n, :e, :message, :numeric_encrypt, :final_encrypt, :decrypted, :block_size
+  
   def initialize(prime_p, q, d, msg)
     @p = prime_p # inf privada
     @q = q # inf privada
@@ -125,6 +143,7 @@ class RSA
     @block_size = set_block_size
   end
 
+  #   to_s de la clase, permite ver información por pantalla
   def to_s
     puts 'Información privada'
     puts "p = #{@p}, q = #{@q}, d = #{@d}, Φ(n) = #{@phi}"
@@ -136,10 +155,15 @@ class RSA
     puts
   end
 
+  # Busca en el hash por clave o por valor de manera que se devuelve la letra o el índice
+  # @param str [Integer|String] letra o índice por el que se desea buscar
+  # @return [Integer|String] la letra o el índice resultante
   def finder(str)
     @LETTER_TO_INDEX[str] || @LETTER_TO_INDEX.key(str)
   end
 
+  # Establece el tamaño del bloque
+  # @return [Integer] el tamaño del bloque que se va a usar  
   def set_block_size
     base = @LETTER_TO_INDEX.length
     j = 0
@@ -147,6 +171,11 @@ class RSA
     j - 1
   end
 
+  # Para calcular "e", que es el inverso de d modulo phi(n)
+  # @note fuente: https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Computing_multiplicative_inverses_in_modular_structures
+  # @param a [Integer] el numero d
+  # @param n [Integer] phi de n
+  # @return [Integer] el inverso
   def modular_inverse(a, n)
     t = 0
     r = n
@@ -162,9 +191,10 @@ class RSA
     t += n if t < 0
     t
   end
-
+  
+  # Realiza la codificación numérica
+  # @note modifica el atributo numeric_encrypt
   def numeric_cypher
-    # arr = [] # aqui se van a almacenar los indices de las letras
     @message.each_char do |char|
       index_of_letter = finder(char)
       @arr.push(index_of_letter)
@@ -190,6 +220,8 @@ class RSA
     puts
   end
 
+  # Realiza el cifrado final
+  # @note modifica el atributo final_encrypt
   def encrypt
     @numeric_encrypt.each do |item|
       cipher = item.fast_expo(@e, @n)
@@ -211,8 +243,10 @@ class RSA
       i += 1
     end
     puts b.to_s
-end
-
+  end
+    
+  # Realiza el descifrado
+  # @note modifica el atributo decrypted
   def decrypt
     @final_encrypt.each do |element|
       m_i = element.fast_expo(@d, @n)
