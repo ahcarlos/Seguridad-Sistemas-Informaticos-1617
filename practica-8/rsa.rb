@@ -63,6 +63,8 @@ def lehmann_test(n, l)
   0
 end
 
+# Método que valida la entrada del usuario, comprobando los requisitos de p, q, d, etc.
+# @return [RSA] devuelve una instancia de la clase RSA
 def require_data
   prime_p = 0 # privado
   prime_q = 0 # privado
@@ -241,7 +243,7 @@ class RSA
     while i < tam
       r = int % 26
       int /= 26
-      b[tam - i - 1] = @decrypted[r]
+      b[tam - i - 1] = finder(r)
       i += 1
     end
     puts b.to_s
