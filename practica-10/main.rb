@@ -23,7 +23,6 @@ loop do
   when 2
     system('clear') || system('cls')
     load './prct/p2.rb'
-
   when 3
     system('clear') || system('cls')
     load './prct/p3.rb'

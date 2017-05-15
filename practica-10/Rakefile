@@ -1,0 +1,4 @@
+desc "Lint code"
+task :lint do
+    exec 'rubocop -a main.rb'
+end
