@@ -21,9 +21,9 @@ loop do
     system('clear') || system('cls')
     load './prct/p1.rb'
   when 2
-      system('clear') || system('cls')
+    system('clear') || system('cls')
     load './prct/p2.rb'
-    
+
   when 3
     system('clear') || system('cls')
     load './prct/p3.rb'
