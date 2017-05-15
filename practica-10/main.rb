@@ -19,28 +19,29 @@ loop do
   case n
   when 1
     system('clear') || system('cls')
-    require './prct/p1'
+    load './prct/p1.rb'
   when 2
-    require './prct/p2'
-    system('clear') || system('cls')
+      system('clear') || system('cls')
+    load './prct/p2.rb'
+    
   when 3
     system('clear') || system('cls')
-    require './prct/p3'
+    load './prct/p3.rb'
   when 4
     system('clear') || system('cls')
-    require './prct/p4'
+    load './prct/p4.rb'
   when 5
     system('clear') || system('cls')
-    require './prct/p5'
+    load './prct/p5.rb'
   when 6
     system('clear') || system('cls')
-    require './prct/p6'
+    load './prct/p6.rb'
   when 7
     system('clear') || system('cls')
-    require './prct/p7'
+    load'./prct/p7.rb'
   when 8
     system('clear') || system('cls')
-    require './prct/p8'
+    load './prct/p8.rb'
   else
     puts 'Terminando ejecución.'
   end
