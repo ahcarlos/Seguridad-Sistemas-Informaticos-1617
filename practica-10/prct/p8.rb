@@ -1,5 +1,3 @@
-require 'colorize'
-
 class Integer
   # Se modifica la clase entero para añadir la exponenciación rápida
   # @param b [Integer] base
@@ -149,10 +147,10 @@ class RSA
 
   #   to_s de la clase, permite ver información por pantalla
   def to_s
-    puts 'Información privada'.colorize(:color => :green)
+    puts 'Información privada'
     puts "p = #{@p}, q = #{@q}, d = #{@d}, Φ(n) = #{@phi}"
     puts
-    puts 'Información pública'.colorize(:color => :yellow)
+    puts 'Información pública'
     puts "n = #{@n}, e = #{@e}"
     puts
     puts "Tamaño del bloque = #{@block_size}"
@@ -261,7 +259,7 @@ class RSA
   end
 end
 
-puts '------ Ejemplo 1 ------'.colorize(:color => :cyan)
+puts '------ Ejemplo 1 ------'
 msg_test = 'MANDA DINEROS'
 prueba = RSA.new(421, 7, 1619, msg_test)
 prueba.to_s
@@ -269,13 +267,11 @@ prueba.numeric_cypher
 prueba.encrypt
 prueba.decrypt
 puts
-=begin
-puts '------ Ejemplo 2 ------'.colorize(:color => :cyan)
+
+puts '------ Ejemplo 2 ------'
 msg_test2 = 'AMIGO MIO'
 prueba2 = RSA.new(2347, 347, 5, msg_test2)
 prueba2.to_s
 prueba2.numeric_cypher
 prueba2.encrypt
 prueba2.decrypt
-puts
-=end
