@@ -2,3 +2,8 @@ desc "Lint code"
 task :lint do
     exec 'rubocop -a main.rb'
 end
+
+desc "Run script"
+task :run do
+    exec 'ruby main.rb'
+end
